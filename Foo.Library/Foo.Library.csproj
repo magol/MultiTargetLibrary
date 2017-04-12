@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--It works if I remove net4.0, but I must have a net4.0 version of the library
+        <TargetFramework>netstandard1.3</TargetFramework>-->
+    
+    <TargetFrameworks>netstandard1.3;net4.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    <PackageReference Include="System.Console" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.0'">
+    <PackageReference Include="StringInterpolationBridgeStrong" Version="0.9.1" />
+  </ItemGroup>
+</Project>

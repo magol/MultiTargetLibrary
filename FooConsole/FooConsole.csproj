@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <!--What I want, but it do not works                
+           <TargetFrameworks>netstandard1.3;net4.0</TargetFrameworks>-->
+    
+    <!--This works, but then I not get a net4.0 version 
+           <TargetFramework>netstandard1.3</TargetFramework>-->
+    
+    <!--This do not works if I have a net4.0 version of the library-->
+    <TargetFramework>net4.6</TargetFramework>
+    <RuntimeIdentifier>win</RuntimeIdentifier>
+  </PropertyGroup>
+
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.6'">
+    <ProjectReference Include="..\Foo.Library\Foo.Library.csproj" SetTargetFramework="TargetFramework=netstandard1.3" />
+
+    <PackageReference Include="System.Console" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.0'">
+    <ProjectReference Include="..\Foo.Library\Foo.Library.csproj" SetTargetFramework="TargetFramework=net4.0" />
+    
+    <PackageReference Include="StringInterpolationBridgeStrong" Version="0.9.1" />
+  </ItemGroup>
+  
+</Project>
